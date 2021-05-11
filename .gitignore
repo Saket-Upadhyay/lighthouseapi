@@ -1,0 +1,3 @@
+#project specific exclusions
+venv/*
+.idea/*
