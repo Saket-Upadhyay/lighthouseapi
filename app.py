@@ -9,7 +9,6 @@ import json
 def hello_world():
     return 'LightHouse API : Open Endpoints -> []'
 
-
 @app.route('/getinit', methods=['POST'])
 def getinit():
     if request.method == 'GET':
@@ -22,7 +21,7 @@ def getinit():
     if request.method == 'POST':
 
         try:
-            request_data = request.get_json()
+            request_data = request.form.to_dict()
             userid = request_data['uid']
             initCode = request_data['initCode']
             initHash = request_data['inithash']
