@@ -20,15 +20,17 @@ def getinit():
             print("NO REQ")
     if request.method == 'POST':
 
+        try:
+            request_data = request.get_json()
+            userid = request_data['uid']
+            initCode = request_data['initCode']
+            initHash = request_data['inithash']
+            userid = request_data['userid']
+            DATARET = contactsmp(initCode, initHash, userid)
 
-        request_data = request.get_json()
-        userid = request_data['uid']
-        initCode = request_data['initCode']
-        initHash = request_data['inithash']
-        userid = request_data['userid']
-        DATARET = contactsmp(initCode, initHash, userid)
-        DATARET={'status':'true'}
-        return json.dumps(DATARET,indent=4)
+            return json.dumps({'status':'true','DATA':DATARET},indent=4)
+        except Exception:
+            return json.dumps({'status':'error'},indent=4)
 
     return "OK"
 
