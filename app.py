@@ -36,7 +36,7 @@ def getinit():
 
 
 def contactsmp(initCode, initHash, userid):
-    RESULT = ""
+    RESULT = str(initCode)+";"+str(initHash)+";"+str(userid)
     # Send request to phone by searching DB for userID
     return RESULT
 
