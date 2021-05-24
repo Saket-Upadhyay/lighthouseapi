@@ -45,6 +45,7 @@ def fetch_details():
     cursor.execute('SELECT @_extract_details_1,@_extract_details_2')
     dd = cursor.fetchall() #dd[0][0] is Hash (password) and dd[0][1] is Captcha (initcode)
     print(dd) #dd[0][0]='1' signifies timeout
+    mysql.connection.commit()
     return 'extract world'
 
 @app.route('/auth2')
@@ -55,6 +56,7 @@ def validate_User():
     cursor.execute('SELECT @_AuthenticateUser2_2')
     dd = cursor.fetchall()
     print(dd) #0=Success 1=Failure
+    mysql.connection.commit()
     return 'Auth2 world'
 
 
