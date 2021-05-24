@@ -57,6 +57,19 @@ def validate_User():
     print(dd) #0=Success 1=Failure
     return 'Auth2 world'
 
+
+@app.route('/insert')
+def in_captcha():
+    cursor = mysql.connection.cursor()
+    args = ('abc@gmail','CDt5',0)
+    cursor.callproc('Inscpt',args)
+    cursor.execute('SELECT @_Inscpt_2')
+    mysql.connection.commit()
+    dd = cursor.fetchall()
+    print(dd) #0=Success 1=Failure (Userid does not exist)
+    return 'insert world'
+
+
 @app.route('/auth')
 def authenticate_Generate():
     cursor = mysql.connection.cursor()
