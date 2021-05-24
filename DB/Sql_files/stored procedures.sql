@@ -21,6 +21,21 @@ END IF;
 END$$
 DELIMITER ;
 
+/*Auth2 */
+DELIMITER $$
+USE health_management_system $$
+CREATE PROCEDURE AuthenticateUser2 (
+  IN email VARCHAR(20),
+  IN passkey varchar(30),
+  OUT msg int)
+BEGIN IF ( 
+  select exists (select 1 from User_Details where Email_id = email and Pass=passkey ) 
+) THEN set msg := 0;
+ELSE set msg:= 1;
+END IF;
+END$$
+DELIMITER ;
+
 
 
 
