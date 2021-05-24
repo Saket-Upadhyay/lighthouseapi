@@ -17,8 +17,10 @@ def getinit():
         if activatebool == "true":
             # SEND REQUEST TO APP
             print("APP REQ")
+            return "APP REQ"
         else:
             print("NO REQ")
+            return "NO REQ"
     if request.method == 'POST':
 
         try:
