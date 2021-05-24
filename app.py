@@ -24,8 +24,7 @@ def getinit():
     if request.method == 'POST':
 
         try:
-            request_data = request.get_json()
-            # userid = request_data['uid']
+            request_data = request.form.to_dict()
             initCode = request_data['initCode']
             initHash = request_data['inithash']
             userid = request_data['userid']
