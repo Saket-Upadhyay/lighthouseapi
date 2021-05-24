@@ -1,13 +1,14 @@
 from flask import Flask
 from flask import request, render_template
+import json
 
 app = Flask(__name__)
-import json
+
 
 
 @app.route('/')
 def hello_world():
-    return 'LightHouse API : Open Endpoints -> []'
+    return 'LightHouse API : Open Endpoints -> [<strong>/getinit</strong> (POST and GET)]'
 
 @app.route('/getinit', methods=['GET','POST'])
 def getinit():
@@ -42,4 +43,4 @@ def contactsmp(initCode, initHash, userid):
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0')
+    app.run()
