@@ -1,3 +1,29 @@
+/*EDIT 1*/
+/*extract_details to extract info*/
+/*AuthenticateUser2 to authenticate user*/
+/*Inscpt to insert captcha for registered user*/
+
+/*Retriving User Details*/
+DELIMITER $$
+USE health_management_system $$
+CREATE PROCEDURE extract_details( 
+  IN id varchar(20) ,
+  OUT hash_val varchar(20),
+  OUT cptt varchar(4))
+BEGIN IF ( 
+  select exists (select 1 from Captcha where id=Email_id) 
+) THEN set hash_val := (select Pass from User_Details where id=Email_id);
+set cptt := (select Capt from Captcha where id=Email_id );
+ELSE 
+  set hash_val:='1';
+  set cptt:='1';
+END IF;
+END$$
+DELIMITER ;
+
+
+
+
 /* CREATE USER */
 DELIMITER $$
 USE lighthouse $$
