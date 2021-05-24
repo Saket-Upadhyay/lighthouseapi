@@ -9,7 +9,7 @@ import json
 def hello_world():
     return 'LightHouse API : Open Endpoints -> []'
 
-@app.route('/getinit', methods=['POST'])
+@app.route('/getinit', methods=['GET','POST'])
 def getinit():
     if request.method == 'GET':
         activatebool = request.args.get('activate')
@@ -21,8 +21,8 @@ def getinit():
     if request.method == 'POST':
 
         try:
-            request_data = request.form.to_dict()
-            userid = request_data['uid']
+            request_data = request.get_json()
+            # userid = request_data['uid']
             initCode = request_data['initCode']
             initHash = request_data['inithash']
             userid = request_data['userid']
@@ -42,4 +42,4 @@ def contactsmp(initCode, initHash, userid):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run('0.0.0.0')
