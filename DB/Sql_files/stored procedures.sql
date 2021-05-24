@@ -36,7 +36,20 @@ END IF;
 END$$
 DELIMITER ;
 
-
+/* Inserting new captcha for registered user */
+DELIMITER $$
+USE health_management_system $$
+CREATE PROCEDURE Inscpt(
+  IN id varchar(20),
+  IN cpt varchar(4),
+  INOUT msg int)
+BEGIN
+/*DECLARE EXIT HANDLER FOR 1062 set msg:= 1;*/
+DECLARE EXIT HANDLER FOR 1452 set msg:= 1;
+insert into captcha(Email_id,Capt) values (id,cpt);
+set msg:=0;
+END$$
+DELIMITER ;
 
 
 /* CREATE USER */
