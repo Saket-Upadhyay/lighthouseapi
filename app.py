@@ -12,6 +12,7 @@ UIDmanager={'active':False,'uid':''}
 AppRequest={'uid':None}
 
 
+
 def contactdb(initHash, userid):
     global AppRequest
     global UIDmanager
@@ -126,7 +127,9 @@ def getinit():
     return "OK"
 
 
-
+@app.route('/welcome')
+def welcome():
+    return render_template('welcome.html')
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0', port=5000, threaded=True)
