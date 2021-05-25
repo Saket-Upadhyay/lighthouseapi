@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, make_response
 from flask import request, render_template
 import json
 from flask import jsonify
@@ -101,10 +101,23 @@ def getinit():
             DATARET = contactdb(initHash, userid)
 
             RET={'status': DATARET, 'initcode': int(initCode)}
-            return jsonify(RET)
+            response = make_response(
+                jsonify(
+                    RET
+                ),
+                200,
+            )
+            response.headers["Content-Type"] = "application/json"
+            return response
         except Exception:
-            RET={'status': 'ERROR'}
-            return jsonify(RET)
+            response = make_response(
+                jsonify(
+                    {'status': 'ERROR'}
+                ),
+                200,
+            )
+            response.headers["Content-Type"] = "application/json"
+            return response
 
     return "OK"
 
