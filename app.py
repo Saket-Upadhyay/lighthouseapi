@@ -72,6 +72,10 @@ def hello_world():
 
 @app.route('/gui')
 def gui():
+    global AppRequest
+    global UIDmanager
+    UIDmanager = {'active': False, 'uid': ''}
+    AppRequest = {'uid': ''}
     return render_template('layout.html')
 
 @app.route('/getinit', methods=['GET','POST'])
@@ -85,7 +89,7 @@ def getinit():
         activatedata.append(request.args.get('activate'))
         activatedata.append(request.args.get('uid'))
         print(activatedata)
-        AppRequest.update({'uid': activatedata[1]})
+
         return testActivationFunction(activatedata)
 
     if request.method == 'POST':
@@ -96,6 +100,7 @@ def getinit():
             userid = request_data['userid']
 
             print(userid)
+            AppRequest.update({'uid': userid})
             print(initHash)
 
             DATARET = contactdb(initHash, userid)
