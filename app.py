@@ -52,8 +52,7 @@ def testActivationFunction(activatedata):
     print("==== testActivation Called ====")
     global AppRequest
     global UIDmanager
-    print(AppRequest.get('uid'))
-    if activatedata[0] == 'true' :
+    if activatedata[0] == 'true' and AppRequest.get('uid') != None:
         print(AppRequest.get('uid'))
         if activatedata[1] in AppRequest.get('uid'):
             tempdict={'active':True,'uid':AppRequest.get('uid')}
