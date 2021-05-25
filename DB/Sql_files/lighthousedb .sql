@@ -8,7 +8,7 @@ CREATE TABLE User_Details(
 
 DROP TABLE Captcha;
 CREATE TABLE Captcha(
-Email_id int,
+Email_id VARCHAR(20),
 Time_generated datetime default current_timestamp,
 Capt VARCHAR(4) primary key,
 foreign key(Email_id) references User_Details(Email_id) on delete Cascade
