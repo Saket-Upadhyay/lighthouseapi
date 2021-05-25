@@ -32,7 +32,7 @@ def contactdb(initHash, userid):
         # Send request to phone by searching DB for userID
         print("WAITING FOR USER")
         # print(AppRequest.get('uid'))
-        time.sleep(20.0)
+        time.sleep(8.0)
         print("== UID STAT == ")
         print(UIDmanager.get('uid'))
         print(UIDmanager.get('active'))
