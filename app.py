@@ -83,7 +83,6 @@ def getinit():
     global AppRequest
     global UIDmanager
     UIDmanager = {'active': False, 'uid': ''}
-    AppRequest = {'uid': ''}
     if request.method == 'GET':
         activatedata=[]
         activatedata.append(request.args.get('activate'))
@@ -99,8 +98,9 @@ def getinit():
             initHash = request_data['inithash']
             userid = request_data['userid']
 
-            print(userid)
+            print(AppRequest.get('uid'))
             AppRequest.update({'uid': userid})
+            print(AppRequest.get('uid'))
             print(initHash)
 
             DATARET = contactdb(initHash, userid)

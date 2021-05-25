@@ -513,15 +513,22 @@
                 var jsonResponse = JSON.parse(data);
                 console.log(jsonResponse['initcode']);
                 var data = jsonResponse['initcode'];
+                var respdata=jsonResponse['status'];
+                console.log(respdata);
 
 
                 console.log("inside check for initCode");
 
                 if (num == data) {
+
+                    if (respdata == true) {
                     a = 1;
                     document.getElementById('textinput').value = document.getElementById('capt').value;
                     console.log("a=1");
                     alert(" CAPTCHA VALIDATED PRESS SUBMIT");
+                } else {
+                    alert("CAPTCHA VALIDATION FAILED [F RESP]");
+                }
                 } else {
                     alert("CAPTCHA VALIDATION FAILED");
                 }
