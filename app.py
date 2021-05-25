@@ -60,6 +60,10 @@ def testActivationFunction(activatedata):
 def hello_world():
     return 'LightHouse API : Open Endpoints -> [<strong>/getinit</strong> (POST and GET)]'
 
+@app.route('/gui')
+def gui():
+    return render_template('layout.html')
+
 @app.route('/getinit', methods=['GET','POST'])
 def getinit():
     global AppRequest
