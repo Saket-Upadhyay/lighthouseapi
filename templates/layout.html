@@ -80,13 +80,13 @@ p{
 	
 </head>
 
-<body onload="cap()" style="background: url(../static/img/5.jpg)no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; color:white; background-color: black; ">
+<body onload="cap()" style="background: url(img/5.jpg)no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; color:white; background-color: black; ">
     
 <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++NAVBAR+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
       <div class="logo-image">
-            <img src="../static/img/lh.png" href="https://www.google.co.in/" width="500" height="500" class="img-fluid">
+            <img src="img/lh.png" href="https://www.google.co.in/" width="500" height="500" class="img-fluid">
       </div>
     </a>
         <a class="navbar-brand" id="lh-text" href="https://giphy.com/gifs/animation-doughnuts-lighthouse-Cd9XcHdZEIcaA">Lighthouse</a>
@@ -194,7 +194,7 @@ p{
                         <button  onclick="validcap()"type="submit" class="btn btn-lg btn-success btn-block"> Submit</button>
                     </form>
                     <br>
-                    <h6>Captcha not visible <img src="../static/img/refresh.png" width="40px" onclick="cap()"></h6>
+                    <h6>Captcha not visible <img src="img/refresh.png" width="40px" onclick="cap()"></h6>
                     <p>New Here?<a href=""> Sign Up</a> </p>
 		            <p>Forgot Password?<a href=""> Recover here</a> </p>
                  </div>
@@ -439,6 +439,7 @@ p{
                     var b=document.getElementById("use").value;
                     var c=document.getElementById("p").value;
                     const hash = MD5(c);
+                     const num = Math.floor(Math.random() * 100) + 50;
 					
 					let formdata = new FormData();
                     console.log(b);
@@ -446,7 +447,7 @@ p{
                     var arr={
                     		"userid":b,
                             "inithash":hash,
-                             "initCode":Math.floor(Math.random() * 100) + 50
+                             "initCode":num
                     };
 					
                     console.log(arr);
@@ -455,9 +456,9 @@ p{
     }
     const XHR = new XMLHttpRequest();
     XHR.addEventListener('load', function (event) {
-        alert("Data Sent. Redirecting.");
+       // alert("Data Sent. Redirecting.");
          console.log(XHR.responseText);
-
+       // window.location = "/checkformdatarender";
 	   
     });
     // Define what happens in case of error
@@ -465,20 +466,46 @@ p{
         alert('Oops! Something went wrong.');
     });
     XHR.open('POST', '/getinit');
-    
+  //  XHR.setRequestHeader("Content-Type", "text/xml");
     XHR.send(formdata);
                     //validate app captcha
-    XHR.onreadystatechange = function() { // Call a function when the state changes.
+  /*  XHR.onreadystatechange = function() { // Call a function when the state changes.
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
         // Request finished. Do processing here.
         console.log("inside call");
         document.getElementById('textinput').value=document.getElementById('capt').value;
         a=1; 
         
-        // validcap();                
-    }
-   }
-   
+        // validcap();               
+    }*/
+      XHR.onreadystatechange = function () {
+            console.log("inside reponse get");
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+           
+                var data = XHR.responseText;
+                var jsonResponse = JSON.parse(data);
+                 console.log(jsonResponse["DATA"]);
+                  var data= jsonResponse["DATA"];
+                
+                 
+                     console.log("inside check for initcode ");
+                    
+                    if(num==data){
+                        a=1;
+                        document.getElementById('textinput').value=document.getElementById('capt').value;
+                        console.log("a=1");
+                        alert(" CAPTCHA VALIDATED PRESS SUBMIT");
+                    } 
+                else{ alert("CAPTCHA VALIDATION FAILED");
+                }
+      }}
+                    
+  /*      fetch('http://127.0.0.1:5000/getinit')
+    .then(res => res.json())
+    .then((out) => {
+        console.log('Output: ', out);
+}).catch(err => console.error(err));
+ */  
     console.log("test");
                     
                 }
@@ -493,7 +520,7 @@ p{
                   return true;
                 }else{
                   alert("Please enter a valid captcha");
-                  window.open('form.html', '_blank');
+                  window.open('layout.html', '_blank');
                   return false;
                 }
                }
