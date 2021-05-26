@@ -68,7 +68,10 @@ def testActivationFunction(activatedata):
 
 @app.route('/')
 def hello_world():
-    return 'LightHouse API : Open Endpoints -> [<strong>/getinit</strong> (POST and GET)]'
+    global AppRequest
+    global UIDmanager
+    UIDmanager = {'active': False, 'uid': ''}
+    return render_template('index.html')
 
 @app.route('/gui')
 def gui():
@@ -129,7 +132,10 @@ def getinit():
 
 @app.route('/welcome')
 def welcome():
+    global AppRequest
+    global UIDmanager
+    UIDmanager = {'active': False, 'uid': ''}
     return render_template('welcome.html')
 
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0', port=5000, threaded=True)
+    app.run(debug=False,host='0.0.0.0', port=5000, threaded=True)
