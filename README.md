@@ -12,6 +12,6 @@ The android client for this project can be found at [Hritvik's GIT Repository](h
 
 The rest of the contributors are as follows-
 * Core API: Saket Upadhyay
-* Front-End: Shreya Daani, Akash Tyagi, Ashesh Cholkar
+* Front-End: Shreyaa Daani, Akash Tyagi, Ashesh Cholkar
 * Database: Anushka Doshi
 * Android Client : Hritvik Semwal, Rhythm Shanghi
