@@ -8,7 +8,7 @@ This is LightHouse's API, the open endpoints are :
 
 ---
 
-The android client for this project can be found at [Hritvik's GIT Repository](https://github.com/semwalhritvik/LighthouseAndroidClient) for the same.
+The android client for this project can be found at [Hritvik's GIT Repository](https://github.com/semwalhritvik/LighthouseAndroidClient).
 
 The rest of the contributors are as follows-
 * Core API: Saket Upadhyay
